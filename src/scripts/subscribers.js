@@ -18,7 +18,9 @@ export function updateCountDisplaySubscriber() {
 export function updateTitleSubscriber(
 	/** @type {import("./game.js").GameState} */ state
 ) {
-	document.title = `Cow Tipper - ${state.count} gallons`
+	if (state.count > 0) {
+		document.title = `Cow Tipper - ${state.count} gallons`
+	}
 }
 
 export function updateUpgradeButtonsSubscriber(
@@ -34,8 +36,10 @@ export function updateUpgradeButtonsSubscriber(
 
 			if (canAfford && button.hasAttribute("aria-disabled")) {
 				button.removeAttribute("aria-disabled")
+				button.setAttribute("tabIndex", "0")
 			} else if (!canAfford && !button.hasAttribute("aria-disabled")) {
 				button.setAttribute("aria-disabled", "")
+				button.setAttribute("tabIndex", "-1")
 			}
 
 			if (owned) {

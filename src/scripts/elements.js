@@ -3,8 +3,6 @@ import { game } from "./game"
 export const loadingScreen = document.createElement("div")
 loadingScreen.classList.add("loading")
 
-document.body.insertAdjacentElement("afterbegin", loadingScreen)
-
 export const loadingScreenText = document.createElement("div")
 loadingScreenText.innerText = "Loading..."
 
@@ -19,15 +17,17 @@ loadingScreen.append(loadingScreenText, loadingScreenBar)
 export const music = new Audio("assets/sound/bgm.mp3")
 music.loop = true
 
-/** @type {HTMLDivElement} */
-export const countDisplay = document.querySelector(".count-value")
-/** @type {HTMLButtonElement} */
-export const cow = document.querySelector(".cow")
-
 export const sfx = Array.from(
 	{ length: 11 },
 	(_, i) => new Audio(`assets/sound/sfx-${i}.mp3`)
 )
+
+export const moo = new Audio("assets/sound/moo.mp3")
+
+/** @type {HTMLDivElement} */
+export const countDisplay = document.querySelector(".count-value")
+/** @type {HTMLButtonElement} */
+export const cow = document.querySelector(".cow")
 
 cow.addEventListener("click", () => {
 	game.increment()

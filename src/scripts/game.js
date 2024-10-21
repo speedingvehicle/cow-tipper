@@ -85,6 +85,7 @@ class Game {
 
 	purchaseUpgrade(/** @type {number} */ index) {
 		const upgrade = UPGRADES[index]
+
 		if (this.state.count >= upgrade.cost) {
 			// Deduct the cost from the current count
 			this.state.count -= upgrade.cost
@@ -98,7 +99,11 @@ class Game {
 
 			// Notify subscribers about the state change
 			this.#notifySubscribers()
+
+			return true
 		}
+
+		return false
 	}
 
 	animateDisplay(/** @type {Element} */ element) {

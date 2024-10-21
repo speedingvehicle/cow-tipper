@@ -1,18 +1,19 @@
 import { SPECIAL_TITLE } from "./const"
+import { moo } from "./elements"
 import { game } from "./game"
 
 /**
  * @param {import("./const").Upgrade} upgrade
  * @param {number} index
  */
-export function createButton({ cost, description, image, name }, index) {
+export function createButton({ cost, description, name }, index) {
 	const button = document.createElement("button")
 	button.classList.add("upgrade")
 	button.id = `upgrade-${index}`
 
 	button.innerHTML = `
 			<div class="upgrade-image">
-				<img height="64" width="64" src="assets/images/${image}.png" />
+				<img height="64" width="64" src="assets/images/upgrade-${index}.png" />
 				<div class="upgrade-owned">0</div>
 			</div>
 			<div class="upgrade-info">
@@ -22,7 +23,15 @@ export function createButton({ cost, description, image, name }, index) {
 			<div class="upgrade-cost">${cost}</div>
 		`
 
-	button.addEventListener("click", () => game.purchaseUpgrade(index))
+	button.addEventListener("click", () => {
+		if (game.purchaseUpgrade(index)) {
+			const playbackRate = Math.random() + 0.75
+
+			moo.currentTime = 0
+			moo.playbackRate = playbackRate
+			moo.play()
+		}
+	})
 
 	return button
 }
@@ -39,6 +48,8 @@ export function threshold() {
 	openCow()
 
 	document.title = SPECIAL_TITLE
+
+	document.body.style.cursor = "none"
 
 	const height = `${Math.random() * 100}%`
 	const width = `${Math.random() * 100}%`

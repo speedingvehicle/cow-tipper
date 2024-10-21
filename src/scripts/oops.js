@@ -17,3 +17,7 @@ document.addEventListener("click", clickHandler)
 window.onload = () => {
 	move()
 }
+
+window.onbeforeunload = () => {
+	alert("MmmmooooOo ooOOO??!!!???")
+}

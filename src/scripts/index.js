@@ -16,26 +16,29 @@ import {
 import { createButton } from "./util"
 
 setTimeout(() => {
+	document.body.insertAdjacentElement("afterbegin", loadingScreen)
+
 	loadingScreenButton.addEventListener("click", () => {
 		loadingScreen.remove()
 		music.play()
+		game.init()
 	})
-}, 250)
+}, 100)
 
 setTimeout(() => {
 	loadingScreen.append(loadingScreenButton)
 }, 1000 * 1.9)
 
-UPGRADES.map((upgrade, index) => {
-	const button = createButton(upgrade, index)
+setTimeout(() => {
+	UPGRADES.map((upgrade, index) => {
+		const button = createButton(upgrade, index)
 
-	upgradesContainer.appendChild(button)
-})
+		upgradesContainer.appendChild(button)
+	})
+}, 125)
 
 game.subscribe(updateCountDisplaySubscriber)
 game.subscribe(updateUpgradeButtonsSubscriber)
 game.subscribe(hideInstructionsSubscriber)
 game.subscribe(updateTitleSubscriber)
 game.subscribe(thresholdSubscriber)
-
-game.init()

@@ -13,6 +13,10 @@
 	vertical-align: inherit;
 }
 
+*:focus-visible {
+	outline: none;
+}
+
 :where(:root) {
 	cursor: default;
 	line-height: 1.5;
@@ -52,6 +56,17 @@
 
 :where(h1, h2, h3, h4, h5, h6) {
 	margin: 0;
+}
+
+.noscript {
+	position: absolute;
+	inset: 0;
+	background-color: #5e4b34;
+	z-index: 1000000;
+	font-size: 2rem;
+	text-align: center;
+	text-wrap: balance;
+	padding: 4rem;
 }
 
 .container {
@@ -127,6 +142,11 @@ header {
 
 .cow {
 	transition: transform 33ms ease;
+	border-radius: 1rem;
+
+	&:focus-visible {
+		box-shadow: 0 0 0 4px #5e4b34;
+	}
 }
 
 .upgrade-container {
@@ -148,6 +168,19 @@ header {
 	padding: 0.3675rem 0.3675rem;
 
 	transition: background-color, border-color 50ms ease;
+
+	&:hover,
+	&:focus {
+		&:not([aria-disabled]) {
+			background-color: #ce8d3e;
+		}
+	}
+
+	&:focus-visible {
+		&:not([aria-disabled]) {
+			box-shadow: 0 0 0 4px #5e4b34;
+		}
+	}
 
 	&[aria-disabled] {
 		background-color: #5e4b34;
