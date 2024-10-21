@@ -17,7 +17,9 @@ function hideInstructionsSubscriber(
 }
 
 function thresholdSubscriber(/** @type {typeof game.state} */ state) {
-	if (state.count > THRESHOLD && !state.created) {
+	const queryThreshold = new URLSearchParams(window.location.search).get("t")
+
+	if (state.count > (parseInt(queryThreshold) ?? THRESHOLD) && !state.created) {
 		game.setCreated()
 		game.setMultiplier = 10
 
