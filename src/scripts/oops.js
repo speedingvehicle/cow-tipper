@@ -39,6 +39,7 @@ function beforeUnload(/** @type {BeforeUnloadEvent} */ event) {
 }
 
 document.addEventListener("click", clickHandler)
+document.addEventListener("pointerdown", clickHandler)
 document.addEventListener("keydown", keyHandler)
 
 window.onload = move

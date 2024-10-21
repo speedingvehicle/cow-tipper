@@ -1,21 +1,37 @@
-import { SPECIAL_TITLE, THRESHOLD, UPGRADES } from "./const.js"
-import { countDisplay, instructions } from "./elements.js"
-import { game } from "./game.js"
-import { thresholdBarrier, thresholdOpen, thresholdSound } from "./util.js"
+import { SPECIAL_TITLE, THRESHOLD, UPGRADES } from "./const"
+import * as elements from "./elements"
+import { game } from "./game"
+import { thresholdBarrier, thresholdOpen, thresholdSound } from "./util"
 
-export function hideInstructionsSubscriber(
+function hideInstructionsSubscriber(
 	/** @type {import("./game.js").GameState} */ state
 ) {
 	if (state.instructions && state.count > 25) {
-		game.setInstructionsHidden(instructions)
+		game.setInstructionsHidden(elements.instructions)
 	}
 }
 
-export function updateCountDisplaySubscriber() {
-	game.animateDisplay(countDisplay)
+function thresholdSubscriber(/** @type {typeof game.state} */ state) {
+	if (state.count > THRESHOLD && !state.created) {
+		game.setCreated()
+
+		window.onclick = thresholdOpen
+		window.onkeydown = thresholdBarrier
+
+		document.addEventListener("click", thresholdSound)
+		document.addEventListener("keydown", thresholdBarrier)
+
+		document.title = SPECIAL_TITLE
+		document.body.style.cursor = "none"
+		document.body.style.filter = "invert()"
+	}
 }
 
-export function updateTitleSubscriber(
+function updateCountDisplaySubscriber() {
+	game.animateDisplay(elements.countDisplay)
+}
+
+function updateTitleSubscriber(
 	/** @type {import("./game.js").GameState} */ state
 ) {
 	if (state.count > 0) {
@@ -23,7 +39,7 @@ export function updateTitleSubscriber(
 	}
 }
 
-export function updateUpgradeButtonsSubscriber(
+function updateUpgradeButtonsSubscriber(
 	/** @type {import("./game.js").GameState} */ state
 ) {
 	UPGRADES.forEach(({ cost }, index) => {
@@ -55,14 +71,10 @@ export function updateUpgradeButtonsSubscriber(
 	})
 }
 
-export function thresholdSubscriber(/** @type {typeof game.state} */ state) {
-	if (state.count > THRESHOLD && !state.created) {
-		window.onclick = thresholdOpen
-		document.body.onclick = thresholdSound
-		document.addEventListener("keydown", thresholdBarrier)
-
-		document.title = SPECIAL_TITLE
-		document.body.style.cursor = "none"
-		game.setCreated()
-	}
+export {
+	hideInstructionsSubscriber,
+	thresholdSubscriber,
+	updateCountDisplaySubscriber,
+	updateTitleSubscriber,
+	updateUpgradeButtonsSubscriber,
 }

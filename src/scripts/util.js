@@ -1,4 +1,4 @@
-import { moo } from "./elements"
+import { moo, sfx } from "./sound"
 import { game } from "./game"
 
 /**
@@ -22,7 +22,7 @@ export function createButton({ cost, description, name }, index) {
 			<div class="upgrade-cost">${cost}</div>
 		`
 
-	button.addEventListener("click", () => {
+	button.addEventListener("pointerdown", () => {
 		if (game.purchaseUpgrade(index)) {
 			const playbackRate = Math.random() + 0.75
 
@@ -33,6 +33,30 @@ export function createButton({ cost, description, name }, index) {
 	})
 
 	return button
+}
+
+export function clickCow(/** @type {PointerEvent} */ event) {
+	game.increment()
+
+	const cow = /** @type {HTMLButtonElement} */ (event.currentTarget)
+	const sound = sfx[Math.floor(Math.random() * 11)]
+
+	const playbackRate = Math.random() * 1.5 + 0.5
+	const randomRotate = Math.random() * 540 - 270
+
+	sound.currentTime = 0
+	sound.playbackRate = playbackRate
+	sound.play()
+
+	requestAnimationFrame(() => {
+		cow.style.transform = `rotate(${randomRotate}deg)`
+	})
+
+	setTimeout(() => {
+		requestAnimationFrame(() => {
+			cow.style.transform = `rotate(0deg)`
+		})
+	}, 50)
 }
 
 export function openCow() {

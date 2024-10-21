@@ -1,8 +1,5 @@
 import { UPGRADES } from "./const"
 
-/** @type {HTMLDivElement} */
-export const countDisplay = document.querySelector(".count-value")
-
 /**
  * @typedef {Game["state"]} GameState
  */
@@ -32,7 +29,6 @@ class Game {
 
 	constructor() {
 		this.#subscribers = []
-		this.#startInterval()
 	}
 
 	#notifySubscribers() {
@@ -107,7 +103,7 @@ class Game {
 	}
 
 	animateDisplay(/** @type {Element} */ element) {
-		const currentCount = parseInt(countDisplay.textContent, 10)
+		const currentCount = parseInt(element.textContent, 10)
 
 		if (currentCount) {
 			if (this.#animationInterval) {
@@ -145,6 +141,7 @@ class Game {
 
 	init() {
 		this.#notifySubscribers()
+		this.#startInterval()
 	}
 
 	get count() {
