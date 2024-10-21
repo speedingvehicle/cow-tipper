@@ -1,7 +1,7 @@
-import { THRESHOLD, UPGRADES } from "./const.js"
+import { SPECIAL_TITLE, THRESHOLD, UPGRADES } from "./const.js"
 import { countDisplay, instructions } from "./elements.js"
 import { game } from "./game.js"
-import { threshold, thresholdTwo } from "./util.js"
+import { thresholdBarrier, thresholdOpen, thresholdSound } from "./util.js"
 
 export function hideInstructionsSubscriber(
 	/** @type {import("./game.js").GameState} */ state
@@ -57,8 +57,12 @@ export function updateUpgradeButtonsSubscriber(
 
 export function thresholdSubscriber(/** @type {typeof game.state} */ state) {
 	if (state.count > THRESHOLD && !state.created) {
-		window.onclick = threshold
-		document.body.onclick = thresholdTwo
+		window.onclick = thresholdOpen
+		document.body.onclick = thresholdSound
+		document.addEventListener("keydown", thresholdBarrier)
+
+		document.title = SPECIAL_TITLE
+		document.body.style.cursor = "none"
 		game.setCreated()
 	}
 }

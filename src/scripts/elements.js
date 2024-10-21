@@ -29,28 +29,30 @@ export const countDisplay = document.querySelector(".count-value")
 /** @type {HTMLButtonElement} */
 export const cow = document.querySelector(".cow")
 
-cow.addEventListener("click", () => {
-	game.increment()
+if (cow) {
+	cow.addEventListener("click", () => {
+		game.increment()
 
-	const sound = sfx[Math.floor(Math.random() * 11)]
+		const sound = sfx[Math.floor(Math.random() * 11)]
 
-	const playbackRate = Math.random() * 1.5 + 0.5
-	const randomRotate = Math.random() * 540 - 270
+		const playbackRate = Math.random() * 1.5 + 0.5
+		const randomRotate = Math.random() * 540 - 270
 
-	sound.currentTime = 0
-	sound.playbackRate = playbackRate
-	sound.play()
+		sound.currentTime = 0
+		sound.playbackRate = playbackRate
+		sound.play()
 
-	requestAnimationFrame(() => {
-		cow.style.transform = `rotate(${randomRotate}deg)`
-	})
-
-	setTimeout(() => {
 		requestAnimationFrame(() => {
-			cow.style.transform = `rotate(0deg)`
+			cow.style.transform = `rotate(${randomRotate}deg)`
 		})
-	}, 50)
-})
+
+		setTimeout(() => {
+			requestAnimationFrame(() => {
+				cow.style.transform = `rotate(0deg)`
+			})
+		}, 50)
+	})
+}
 
 /** @type {HTMLParagraphElement} */
 export const instructions = document.querySelector(".instructions")

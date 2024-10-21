@@ -5,22 +5,18 @@ let yPos = -100
 
 function newLeft() {
 	xOff = Math.ceil(-4 * Math.random()) * 5 - 10
-	window.focus()
 }
 
 function newRight() {
 	xOff = Math.ceil(7 * Math.random()) * 5 - 10
-	window.focus()
 }
 
 function newUp() {
 	yOff = Math.ceil(-4 * Math.random()) * 5 - 10
-	window.focus()
 }
 
 function newDown() {
 	yOff = Math.ceil(7 * Math.random()) * 5 - 10
-	window.focus()
 }
 
 export function move() {
@@ -44,6 +40,8 @@ export function move() {
 	}
 
 	window.moveTo(xPos, yPos)
+	window.focus()
+
 	setTimeout(move, 150)
 	setInterval(move, 300)
 }

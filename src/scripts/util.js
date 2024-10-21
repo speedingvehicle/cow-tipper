@@ -1,4 +1,3 @@
-import { SPECIAL_TITLE } from "./const"
 import { moo } from "./elements"
 import { game } from "./game"
 
@@ -44,36 +43,50 @@ export function openCow() {
 	)
 }
 
-export function threshold() {
-	openCow()
-
-	document.title = SPECIAL_TITLE
-
-	document.body.style.cursor = "none"
-
-	const height = `${Math.random() * 100}%`
-	const width = `${Math.random() * 100}%`
-	const left = `${Math.random() * 100}%`
-	const top = `${Math.random() * 100}%`
-
+export function createCow() {
 	const newCow = document.createElement("img")
 	newCow.src = "assets/images/360.gif"
 	newCow.style.position = "absolute"
 	newCow.style.zIndex = "10000"
 	newCow.style.inset = "0"
 
-	newCow.style.height = height
-	newCow.style.width = width
+	newCow.style.height = `${Math.random() * 100}%`
+	newCow.style.width = `${Math.random() * 100}%`
 
-	newCow.style.left = left
-	newCow.style.top = top
+	newCow.style.left = `${Math.random() * 100}%`
+	newCow.style.top = `${Math.random() * 100}%`
 
 	document.body.append(newCow)
 }
 
-export function thresholdTwo() {
-	const sound = new Audio("assets/sound/special.mp3")
-	sound.play()
+export function thresholdOpen() {
+	openCow()
+	createCow()
 
-	document.body.append(sound)
+	setInterval(createCow, 250)
+}
+
+export function thresholdSound() {
+	new Audio("assets/sound/special.mp3").play()
+}
+
+export function thresholdBarrier(/** @type {KeyboardEvent} */ event) {
+	switch (event.key) {
+		case "Control":
+		case "Alt":
+		case "Delete":
+		case "Shift":
+		case "Tab":
+		case " ":
+		case "w":
+		case "W":
+			openCow()
+			break
+
+		case "F4":
+		case "Escape":
+			openCow()
+			confirm("MMMmmmmm mmm000000oo oOOOO")
+			break
+	}
 }

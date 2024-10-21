@@ -13,8 +13,8 @@ class Game {
 	/** @type {((value: typeof this.state) => void)[]} */
 	#subscribers
 
-	#intervalDuration = 1000
-	#intervalMultiplier = 1
+	intervalDuration = 1000
+	intervalMultiplier = 1
 	#totalIncrement = 0
 
 	/** @type {typeof UPGRADES[number][]} */
@@ -50,7 +50,7 @@ class Game {
 			if (this.#upgradeQueue.length > 0) {
 				this.#batchApplyUpgrades()
 			}
-		}, Math.max(this.#intervalDuration / this.#intervalMultiplier, 33))
+		}, Math.max(this.intervalDuration / this.intervalMultiplier, 33))
 	}
 
 	#batchApplyUpgrades() {
@@ -67,7 +67,7 @@ class Game {
 		})
 
 		this.#totalIncrement += totalIncrementChange
-		this.#intervalMultiplier *= totalMultiplierChange
+		this.intervalMultiplier *= totalMultiplierChange
 
 		this.#startInterval()
 
