@@ -2,6 +2,14 @@ import { moo, sfx } from "./sound"
 import { game } from "./game"
 
 /**
+ * @param {number} cost
+ * @param {number} quantity
+ */
+export function calculateCost(cost, quantity = 0) {
+	return Math.ceil(cost + (quantity * cost) / 10)
+}
+
+/**
  * @param {import("./const").Upgrade} upgrade
  * @param {number} index
  */
@@ -113,4 +121,8 @@ export function thresholdBarrier(/** @type {KeyboardEvent} */ event) {
 			confirm("MMMmmmmm mmm000000oo oOOOO")
 			break
 	}
+
+	alert(
+		"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMoo"
+	)
 }

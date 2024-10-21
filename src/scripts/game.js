@@ -1,4 +1,5 @@
 import { UPGRADES } from "./const"
+import { calculateCost } from "./util"
 
 /**
  * @typedef {Game["state"]} GameState
@@ -10,9 +11,9 @@ class Game {
 	/** @type {((value: typeof this.state) => void)[]} */
 	#subscribers
 
-	intervalDuration = 1000
+	#intervalDuration = 1000
 	intervalMultiplier = 1
-	#totalIncrement = 0
+	totalIncrement = 0
 
 	/** @type {typeof UPGRADES[number][]} */
 	#upgradeQueue = []
@@ -41,12 +42,12 @@ class Game {
 		}
 
 		this.#intervalId = setInterval(() => {
-			this.increment(this.#totalIncrement)
+			this.increment(this.totalIncrement)
 
 			if (this.#upgradeQueue.length > 0) {
 				this.#batchApplyUpgrades()
 			}
-		}, Math.max(this.intervalDuration / this.intervalMultiplier, 33))
+		}, Math.max(this.#intervalDuration / this.intervalMultiplier, 33))
 	}
 
 	#batchApplyUpgrades() {
@@ -62,7 +63,7 @@ class Game {
 			}
 		})
 
-		this.#totalIncrement += totalIncrementChange
+		this.totalIncrement += totalIncrementChange
 		this.intervalMultiplier *= totalMultiplierChange
 
 		this.#startInterval()
@@ -81,10 +82,11 @@ class Game {
 
 	purchaseUpgrade(/** @type {number} */ index) {
 		const upgrade = UPGRADES[index]
+		const cost = calculateCost(upgrade.cost, this.state.ownedUpgrades[index])
 
-		if (this.state.count >= upgrade.cost) {
+		if (this.state.count >= cost) {
 			// Deduct the cost from the current count
-			this.state.count -= upgrade.cost
+			this.state.count -= cost
 
 			// Track the number of upgrades owned
 			this.state.ownedUpgrades[index] =
@@ -102,7 +104,7 @@ class Game {
 		return false
 	}
 
-	animateDisplay(/** @type {Element} */ element) {
+	animateCount(/** @type {Element} */ element) {
 		const currentCount = parseInt(element.textContent, 10)
 
 		if (currentCount) {
@@ -130,11 +132,6 @@ class Game {
 		}
 	}
 
-	setInstructionsHidden(/** @type {Element} */ element) {
-		element.setAttribute("hidden", "")
-		this.state.instructions = false
-	}
-
 	setCreated() {
 		this.state.created = true
 	}
@@ -150,6 +147,15 @@ class Game {
 
 	get ownedUpgrades() {
 		return this.state.ownedUpgrades
+	}
+
+	set setMultiplier(/** @type {number} */ value) {
+		this.intervalMultiplier += value
+	}
+
+	set setInstructionsHidden(/** @type {Element} */ element) {
+		element.setAttribute("hidden", "")
+		this.state.instructions = false
 	}
 }
 

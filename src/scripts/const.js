@@ -9,14 +9,14 @@ export const UPGRADES = Object.freeze([
 	},
 	{
 		name: "Farmer Fred",
-		description: "Multiply the milking speed by 1/10.",
-		cost: 1000,
-		effect: { type: "SPEED", value: 1.1 },
+		description: "Multiply the milking speed by a small amount.",
+		cost: 720,
+		effect: { type: "SPEED", value: 1.05 },
 	},
 	{
 		name: "Herd of Cows",
 		description: "Introduce 10 additional cows",
-		cost: 15000,
+		cost: 9000,
 		effect: { type: "INCREMENT", value: 100 },
 	},
 	{
@@ -27,6 +27,6 @@ export const UPGRADES = Object.freeze([
 	},
 ])
 
-export const THRESHOLD = 22000
+export const THRESHOLD = 17500
 
 export const SPECIAL_TITLE = "MOOooOOOoO00oOO0ooo00oOOO0Oooo0OO0OO"
