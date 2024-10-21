@@ -1,4 +1,4 @@
-import { SPECIAL_TITLE, THRESHOLD, UPGRADES } from "./const"
+import { queryThreshold, SPECIAL_TITLE, THRESHOLD, UPGRADES } from "./const"
 import * as elements from "./elements"
 import { game } from "./game"
 import {
@@ -17,9 +17,9 @@ function hideInstructionsSubscriber(
 }
 
 function thresholdSubscriber(/** @type {typeof game.state} */ state) {
-	const queryThreshold = new URLSearchParams(window.location.search).get("t")
+	const threshold = queryThreshold ? parseInt(queryThreshold) : THRESHOLD
 
-	if (state.count > (parseInt(queryThreshold) ?? THRESHOLD) && !state.created) {
+	if (state.count > threshold && !state.created) {
 		game.setCreated()
 		game.setMultiplier = 10
 

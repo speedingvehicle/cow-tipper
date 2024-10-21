@@ -26,7 +26,9 @@ export const UPGRADES = Object.freeze([
 		effect: { type: "UNKNOWN", value: 0 },
 	},
 ])
-
 export const THRESHOLD = 17500
-
 export const SPECIAL_TITLE = "MOOooOOOoO00oOO0ooo00oOOO0Oooo0OO0OO"
+
+export const queryThreshold = new URLSearchParams(window.location.search).get(
+	"t"
+)
