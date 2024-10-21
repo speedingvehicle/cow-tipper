@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Cow Tipper</title>
+		<link rel="stylesheet" href="src/styles/styles.postcss" />
+		<meta name="description" content="Click the cow to milk it." />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" property="og:title" content="Cow Tipper" />
+		<meta
+			name="twitter:description"
+			property="og:description"
+			content="Click the cow to milk it."
+		/>
+		<link rel="icon" type="image/x-icon" href="favicon.ico" />
+	</head>
+
+	<noscript>
+		<p
+			>This game requires JavaScript to run. Please ensure you are not running a
+			JavaScript blocker and that you have JavaScript enabled.</p
+		>
+	</noscript>
+
+	<body>
+		<div class="container">
+			<header>
+				<h1 class="title">Cow Tipper</h1>
+				<p class="instructions"
+					>Click the cow to milk it.<br />
+					Purchase upgrades using the gallons of milk you have accrued.</p
+				>
+				<img class="bg" src="assets/images/bg.png" height="288" />
+			</header>
+			<div class="game-panel">
+				<button class="cow" draggable="false">
+					<img
+						src="assets/images/cow.png"
+						height="365"
+						width="365"
+						draggable="false"
+					/>
+				</button>
+				<div class="upgrade-container"></div>
+			</div>
+			<div class="count-display"><span class="count-value"></span> gallons</div>
+		</div>
+
+		<script src="src/index.js" type="module"></script>
+	</body>
+</html>
