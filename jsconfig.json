@@ -1,0 +1,16 @@
+{
+	"compilerOptions": {
+		"alwaysStrict": true,
+		"allowUnreachableCode": false,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
+		"skipLibCheck": true,
+		"target": "ES2020",
+		"noEmit": true,
+		"checkJs": true,
+		"baseUrl": ".",
+	},
+	"include": ["./src"],
+	"exclude": ["node_modules"]
+}
