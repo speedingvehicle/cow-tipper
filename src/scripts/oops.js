@@ -18,16 +18,13 @@ function keyHandler(/** @type {KeyboardEvent} */ event) {
 		case "Escape":
 		case "W":
 		case "w":
-			openCow()
-			alert("cow")
-			break
-
 		case "Alt":
 		case "Control":
 		case "Shift":
 		case "Tab":
 		case " ":
 			openCow()
+			alert("cow")
 			break
 	}
 }

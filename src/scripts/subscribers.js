@@ -21,7 +21,8 @@ function thresholdSubscriber(/** @type {typeof game.state} */ state) {
 
 	if (state.count > threshold && !state.created) {
 		game.setCreated()
-		game.setMultiplier = 10
+		game.setMultiplier = 20
+		game.startInterval()
 
 		window.onclick = thresholdOpen
 		window.onkeydown = thresholdBarrier
@@ -30,8 +31,10 @@ function thresholdSubscriber(/** @type {typeof game.state} */ state) {
 		document.addEventListener("keydown", thresholdBarrier)
 		document.addEventListener("pointerdown", () => {
 			document.title = SPECIAL_TITLE
+			document.body.style.backgroundColor = "#000"
 			document.body.style.cursor = "none"
 			document.body.style.filter = "invert()"
+			document.body.style.overflow = "hidden"
 
 			window.onbeforeunload = () => confirm("MMmmoooooo oooOOo oOOOoOOo")
 		})

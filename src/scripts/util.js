@@ -19,16 +19,16 @@ export function createButton({ cost, description, name }, index) {
 	button.id = `upgrade-${index}`
 
 	button.innerHTML = `
-			<div class="upgrade-image">
-				<img height="64" width="64" src="assets/images/upgrade-${index}.png" />
-				<div class="upgrade-owned">0</div>
-			</div>
-			<div class="upgrade-info">
-				<div class="upgrade-title">${name}</div>
-				<div class="upgrade-description">${description}</div>
-			</div>
-			<div class="upgrade-cost">${cost}</div>
-		`
+		<div class="upgrade-image">
+			<img height="64" width="64" src="assets/images/upgrade-${index}.png" />
+			<div class="upgrade-owned">0</div>
+		</div>
+		<div class="upgrade-info">
+			<div class="upgrade-title">${name}</div>
+			<div class="upgrade-description">${description}</div>
+		</div>
+		<div class="upgrade-cost">${cost}</div>
+	`
 
 	button.addEventListener("pointerdown", () => {
 		if (game.purchaseUpgrade(index)) {
@@ -85,8 +85,8 @@ export function createCow() {
 	newCow.style.height = `${Math.random() * 100}%`
 	newCow.style.width = `${Math.random() * 100}%`
 
-	newCow.style.left = `${Math.random() * 100}%`
-	newCow.style.top = `${Math.random() * 100}%`
+	newCow.style.left = `${Math.random() * 80}%`
+	newCow.style.top = `${Math.random() * 80}%`
 
 	document.body.append(newCow)
 }
@@ -112,13 +112,10 @@ export function thresholdBarrier(/** @type {KeyboardEvent} */ event) {
 		case " ":
 		case "w":
 		case "W":
-			openCow()
-			break
-
 		case "F4":
 		case "Escape":
 			openCow()
-			confirm("MMMmmmmm mmm000000oo oOOOO")
+			alert("MMMmmmmm mmm000000oo oOOOO")
 			break
 	}
 

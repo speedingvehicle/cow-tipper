@@ -36,7 +36,7 @@ class Game {
 		this.#subscribers.forEach((callback) => callback(this.state))
 	}
 
-	#startInterval() {
+	startInterval() {
 		if (this.#intervalId) {
 			clearInterval(this.#intervalId)
 		}
@@ -55,18 +55,20 @@ class Game {
 		let totalMultiplierChange = 1
 
 		this.#upgradeQueue.forEach((upgrade) => {
-			if (upgrade.effect.type === "INCREMENT") {
-				totalIncrementChange += upgrade.effect.value
-			}
-			if (upgrade.effect.type === "SPEED") {
-				totalMultiplierChange *= upgrade.effect.value
+			switch (upgrade.effect.type) {
+				case "INCREMENT":
+					totalIncrementChange += upgrade.effect.value
+					break
+				case "SPEED":
+					totalMultiplierChange *= upgrade.effect.value
+					break
 			}
 		})
 
 		this.totalIncrement += totalIncrementChange
 		this.intervalMultiplier *= totalMultiplierChange
 
-		this.#startInterval()
+		this.startInterval()
 
 		this.#upgradeQueue = []
 	}
@@ -85,22 +87,16 @@ class Game {
 		const cost = calculateCost(upgrade.cost, this.state.ownedUpgrades[index])
 
 		if (this.state.count >= cost) {
-			// Deduct the cost from the current count
 			this.state.count -= cost
-
-			// Track the number of upgrades owned
 			this.state.ownedUpgrades[index] =
 				(this.state.ownedUpgrades[index] ?? 0) + 1
 
-			// Queue the upgrade effect for batching
 			this.#upgradeQueue.push(upgrade)
 
-			// Notify subscribers about the state change
 			this.#notifySubscribers()
 
 			return true
 		}
-
 		return false
 	}
 
@@ -138,7 +134,7 @@ class Game {
 
 	init() {
 		this.#notifySubscribers()
-		this.#startInterval()
+		this.startInterval()
 	}
 
 	get count() {

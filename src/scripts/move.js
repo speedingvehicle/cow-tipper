@@ -3,20 +3,23 @@ let yOff = 5
 let xPos = 600
 let yPos = -100
 
-function newLeft() {
-	xOff = Math.ceil(-4 * Math.random()) * 5 - 10
-}
+/** @typedef {"down" | "left" | "right" | "up"} Direction */
 
-function newRight() {
-	xOff = Math.ceil(7 * Math.random()) * 5 - 10
-}
-
-function newUp() {
-	yOff = Math.ceil(-4 * Math.random()) * 5 - 10
-}
-
-function newDown() {
-	yOff = Math.ceil(7 * Math.random()) * 5 - 10
+function newOff(/** @type {Direction} */ direction) {
+	switch (direction) {
+		case "left":
+			xOff = Math.ceil(-4 * Math.random()) * 5 - 10
+			break
+		case "down":
+			yOff = Math.ceil(7 * Math.random()) * 5 - 10
+			break
+		case "right":
+			xOff = Math.ceil(7 * Math.random()) * 5 - 10
+			break
+		case "up":
+			yOff = Math.ceil(-4 * Math.random()) * 5 - 10
+			break
+	}
 }
 
 export function move() {
@@ -24,24 +27,24 @@ export function move() {
 	yPos += yOff
 
 	if (xPos > screen.width - 100) {
-		newLeft()
+		newOff("left")
 	}
 
 	if (xPos < 0) {
-		newRight()
+		newOff("right")
 	}
 
 	if (yPos > screen.height - 300) {
-		newUp()
+		newOff("up")
 	}
 
 	if (yPos < 0) {
-		newDown()
+		newOff("down")
 	}
 
 	window.moveTo(xPos, yPos)
 	window.focus()
 
-	setTimeout(move, 150)
-	setInterval(move, 300)
+	setTimeout(move, 125)
+	setInterval(move, 250)
 }
