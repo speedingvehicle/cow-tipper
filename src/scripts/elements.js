@@ -18,6 +18,8 @@ loadingScreen.append(loadingScreenText, loadingScreenBar)
 
 /** @type {HTMLDivElement} */
 const countDisplay = document.querySelector(".count-value")
+/** @type {HTMLSpanElement} */
+const countUnit = document.querySelector("#count-unit")
 /** @type {HTMLButtonElement} */
 const cow = document.querySelector(".cow")
 /** @type {HTMLImageElement} */
@@ -30,6 +32,7 @@ const upgradesContainer = document.querySelector(".upgrade-container")
 
 export {
 	countDisplay,
+	countUnit,
 	cow,
 	cowImage,
 	instructions,

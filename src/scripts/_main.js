@@ -7,15 +7,14 @@ import { music } from "./sound"
 import * as subscribers from "./subscribers"
 import { clickCow, createButton, imageSrc } from "./util"
 
-console.log(theme)
-
-if (theme) {
-	switch (theme) {
-		case "xmas":
-			elements.cowImage.src = imageSrc("cow-xmas")
-			elements.instructions.textContent = `${elements.instructions.innerText} and have a merry`
-	}
+switch (theme) {
+	case "xmas":
+		elements.cowImage.src = imageSrc("cow-xmas")
+		elements.instructions.textContent = `${elements.instructions.innerText} and have a merry`
+		elements.countUnit.textContent = "festive gallons"
+		break
 }
+
 
 setTimeout(() => {
 	document.body.insertAdjacentElement("afterbegin", elements.loadingScreen)
