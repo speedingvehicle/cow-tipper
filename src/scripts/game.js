@@ -1,3 +1,5 @@
+// @ts-check
+
 import { UPGRADES } from "./const"
 import { calculateCost } from "./util"
 

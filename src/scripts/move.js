@@ -1,3 +1,5 @@
+// @ts-check
+
 let xOff = 5
 let yOff = 5
 let xPos = 600

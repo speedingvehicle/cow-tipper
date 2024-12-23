@@ -1,9 +1,21 @@
-import { UPGRADES } from "./const"
+// @ts-check
+
+import { theme, UPGRADES } from "./const"
 import * as elements from "./elements"
 import { game } from "./game"
 import { music } from "./sound"
 import * as subscribers from "./subscribers"
-import { clickCow, createButton } from "./util"
+import { clickCow, createButton, imageSrc } from "./util"
+
+console.log(theme)
+
+if (theme) {
+	switch (theme) {
+		case "xmas":
+			elements.cowImage.src = imageSrc("cow-xmas")
+			elements.instructions.textContent = `${elements.instructions.innerText} and have a merry`
+	}
+}
 
 setTimeout(() => {
 	document.body.insertAdjacentElement("afterbegin", elements.loadingScreen)

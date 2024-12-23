@@ -1,3 +1,5 @@
+// @ts-check
+
 import { queryThreshold, SPECIAL_TITLE, THRESHOLD, UPGRADES } from "./const"
 import * as elements from "./elements"
 import { game } from "./game"

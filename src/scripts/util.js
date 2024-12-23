@@ -1,3 +1,5 @@
+// @ts-check
+
 import { moo, sfx } from "./sound"
 import { game } from "./game"
 
@@ -20,7 +22,7 @@ export function createButton({ cost, description, name }, index) {
 
 	button.innerHTML = `
 		<div class="upgrade-image">
-			<img height="64" width="64" src="assets/images/upgrade-${index}.png" />
+			<img height="64" width="64" src="${imageSrc(`upgrade-${index}`)}" />
 			<div class="upgrade-owned">0</div>
 		</div>
 		<div class="upgrade-info">
@@ -77,7 +79,7 @@ export function openCow() {
 
 export function createCow() {
 	const newCow = document.createElement("img")
-	newCow.src = "assets/images/360.gif"
+	newCow.src = imageSrc("360")
 	newCow.style.position = "absolute"
 	newCow.style.zIndex = "10000"
 	newCow.style.inset = "0"
@@ -99,7 +101,7 @@ export function thresholdOpen() {
 }
 
 export function thresholdSound() {
-	new Audio("assets/sound/special.mp3").play()
+	new Audio(audioSrc("special")).play()
 }
 
 export function thresholdBarrier(/** @type {KeyboardEvent} */ event) {
@@ -122,4 +124,12 @@ export function thresholdBarrier(/** @type {KeyboardEvent} */ event) {
 	alert(
 		"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMoo"
 	)
+}
+
+export function imageSrc(/** @type {string} */ file) {
+	return `content/images/${file}.png`
+}
+
+export function audioSrc(/** @type {string} */ file) {
+	return `content/sound/${file}.mp3`
 }

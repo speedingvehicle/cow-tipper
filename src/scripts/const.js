@@ -1,4 +1,7 @@
+// @ts-check
+
 /** @typedef {UPGRADES[number]} Upgrade */
+/** @typedef {"xmas"} Theme */
 
 export const UPGRADES = Object.freeze([
 	{
@@ -29,6 +32,10 @@ export const UPGRADES = Object.freeze([
 export const THRESHOLD = 17500
 export const SPECIAL_TITLE = "MOOooOOOoO00oOO0ooo00oOOO0Oooo0OO0OO"
 
-export const queryThreshold = new URLSearchParams(window.location.search).get(
+export const queryThreshold = /** @type {number} */ Number(new URLSearchParams(window.location.search).get(
+	"p"
+))
+
+export const theme = /** @type {Theme} */ (new URLSearchParams(window.location.search).get(
 	"t"
-)
+))

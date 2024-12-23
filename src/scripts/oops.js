@@ -1,3 +1,5 @@
+// @ts-check
+
 import { move } from "./move"
 import { openCow } from "./util"
 
