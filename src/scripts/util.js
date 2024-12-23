@@ -79,7 +79,7 @@ export function openCow() {
 
 export function createCow() {
 	const newCow = document.createElement("img")
-	newCow.src = imageSrc("360")
+	newCow.src = "content/images/360.gif"
 	newCow.style.position = "absolute"
 	newCow.style.zIndex = "10000"
 	newCow.style.inset = "0"

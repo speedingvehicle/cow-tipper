@@ -19,7 +19,7 @@ function hideInstructionsSubscriber(
 }
 
 function thresholdSubscriber(/** @type {typeof game.state} */ state) {
-	const threshold = queryThreshold ? parseInt(queryThreshold) : THRESHOLD
+	const threshold = isNaN(queryThreshold) ? THRESHOLD : queryThreshold ?? THRESHOLD;
 
 	if (state.count > threshold && !state.created) {
 		game.setCreated()
