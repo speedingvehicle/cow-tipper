@@ -5,7 +5,7 @@ import { audioSrc } from "./util"
 
 const sfx = Array.from(
 	{ length: 11 },
-	(_, i) => new Audio(audioSrc(`sfx-${i}`))
+	(_, i) => new Audio(audioSrc(`sfx-${i}${theme ? `-${theme}` : ""}`))
 )
 
 const music = new Audio(audioSrc(`bgm${theme ? `-${theme}` : ""}`))
