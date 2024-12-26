@@ -1,7 +1,14 @@
 // @ts-check
 
 /** @typedef {UPGRADES[number]} Upgrade */
-/** @typedef {"xmas"} Theme */
+/** @typedef {"xmas" | "nye" | "cny"} Theme */
+
+/** @type {Theme[]} */
+export const THEMES = [
+	"xmas",
+	"nye",
+	"cny",
+]
 
 export const UPGRADES = Object.freeze([
 	{
@@ -36,6 +43,6 @@ export const queryThreshold = /** @type {number} */ Number(new URLSearchParams(w
 	"p"
 ))
 
-export const theme = /** @type {Theme} */ (new URLSearchParams(window.location.search).get(
+export const themeParam = new URLSearchParams(window.location.search).get(
 	"t"
-))
+)

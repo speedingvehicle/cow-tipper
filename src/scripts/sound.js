@@ -1,14 +1,13 @@
 // @ts-check
 
-import { theme } from "./const"
-import { audioSrc } from "./util"
+import { audioSrc, themedSrc } from "./util"
 
 const sfx = Array.from(
-	{ length: 11 },
-	(_, i) => new Audio(audioSrc(`sfx-${i}${theme ? `-${theme}` : ""}`))
+	{ length: 6 },
+	(_, i) => new Audio(audioSrc(themedSrc(`sfx-${i}`)))
 )
 
-const music = new Audio(audioSrc(`bgm${theme ? `-${theme}` : ""}`))
+const music = new Audio(audioSrc(themedSrc("bgm")))
 music.loop = true
 
 const moo = new Audio(audioSrc(`moo`))

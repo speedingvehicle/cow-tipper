@@ -2,6 +2,7 @@
 
 import { moo, sfx } from "./sound"
 import { game } from "./game"
+import { themeParam, THEMES } from "./const"
 
 /**
  * @param {number} cost
@@ -132,4 +133,40 @@ export function imageSrc(/** @type {string} */ file) {
 
 export function audioSrc(/** @type {string} */ file) {
 	return `content/sound/${file}.mp3`
+}
+
+/**
+ * @param {string} value 
+ * @returns {value is import("./const").Theme}
+ */
+export function isTheme(value) {
+	// @ts-ignore This is a silly typescriptism
+	if (THEMES.includes(value)) {
+		return true
+	}
+	return false
+}
+
+/**
+ * @returns {import("./const").Theme | null}
+ */
+export function getTheme() {
+	if (isTheme(themeParam)) {
+		return themeParam
+	}
+
+	return null
+}
+
+/** 
+ * @param {string} src 
+ */
+export function themedSrc(src) {
+	const theme = getTheme()
+
+	if (theme) {
+		return `${src}-${themeParam}`
+	}
+
+	return src
 }

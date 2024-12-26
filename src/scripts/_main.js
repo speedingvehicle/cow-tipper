@@ -1,19 +1,29 @@
 // @ts-check
 
-import { theme, UPGRADES } from "./const"
+import { UPGRADES } from "./const"
 import * as elements from "./elements"
 import { game } from "./game"
 import { music } from "./sound"
 import * as subscribers from "./subscribers"
-import { clickCow, createButton, imageSrc } from "./util"
+import { clickCow, createButton, getTheme, imageSrc, themedSrc } from "./util"
 
-switch (theme) {
-	case "xmas":
-		elements.cowImage.src = imageSrc("cow-xmas")
-		elements.instructions.textContent = `${elements.instructions.innerText} and have a merry`
-		elements.countUnit.textContent = "festive gallons"
-		break
+const theme = getTheme()
+
+if (theme) {
+	elements.cowImage.src = imageSrc(themedSrc("cow"))
+	switch (theme) {
+		case "xmas":
+			elements.instructions.innerHTML = `${elements.instructions.innerHTML}<br />and have a merry`
+			elements.countUnit.textContent = "festive gallons"
+			break
+		case "nye":
+			elements.instructions.innerHTML = "click cow and new<br />year celebration"
+			break
+		case "cny":
+			elements.instructions.textContent = ""
+	}
 }
+
 
 
 setTimeout(() => {
