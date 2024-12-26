@@ -2,7 +2,7 @@
 
 import { moo, sfx } from "./sound"
 import { game } from "./game"
-import { queryThreshold, themeParam, THEMES, THRESHOLD } from "./const"
+import { queryThreshold, SOUND_EFFECT_AMMOUNT, themeParam, THEMES, THRESHOLD } from "./const"
 
 /**
  * @param {number} cost
@@ -50,7 +50,7 @@ export function clickCow(/** @type {PointerEvent} */ event) {
 	game.increment()
 
 	const cow = /** @type {HTMLButtonElement} */ (event.currentTarget)
-	const sound = sfx[Math.floor(Math.random() * 11)]
+	const sound = sfx[Math.floor(Math.random() * SOUND_EFFECT_AMMOUNT)]
 
 	const playbackRate = Math.random() * 1.5 + 0.5
 	const randomRotate = Math.random() * 540 - 270
