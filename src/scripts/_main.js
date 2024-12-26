@@ -5,9 +5,11 @@ import * as elements from "./elements"
 import { game } from "./game"
 import { music } from "./sound"
 import * as subscribers from "./subscribers"
-import { clickCow, createButton, getTheme, imageSrc, themedSrc } from "./util"
+import { clickCow, createButton, getTheme, getThreshold, imageSrc, themedSrc } from "./util"
 
 const theme = getTheme()
+
+console.log(getThreshold())
 
 if (theme) {
 	elements.cowImage.src = imageSrc(themedSrc("cow"))
@@ -20,11 +22,9 @@ if (theme) {
 			elements.instructions.innerHTML = "click cow and new<br />year celebration"
 			break
 		case "cny":
-			elements.instructions.textContent = ""
+			elements.instructions.textContent = "点击奶牛即可挤奶。<br/>使用您累积的牛奶量购买升级。"
 	}
 }
-
-
 
 setTimeout(() => {
 	document.body.insertAdjacentElement("afterbegin", elements.loadingScreen)

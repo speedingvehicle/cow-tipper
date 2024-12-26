@@ -2,7 +2,7 @@
 
 import { moo, sfx } from "./sound"
 import { game } from "./game"
-import { themeParam, THEMES } from "./const"
+import { queryThreshold, themeParam, THEMES, THRESHOLD } from "./const"
 
 /**
  * @param {number} cost
@@ -145,6 +145,14 @@ export function isTheme(value) {
 		return true
 	}
 	return false
+}
+
+export function getThreshold() {
+	if (isNaN(queryThreshold)) {
+		return THRESHOLD
+	}
+
+	return queryThreshold
 }
 
 /**

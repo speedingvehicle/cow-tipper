@@ -1,10 +1,11 @@
 // @ts-check
 
-import { queryThreshold, SPECIAL_TITLE, THRESHOLD, UPGRADES } from "./const"
+import { SPECIAL_TITLE, UPGRADES } from "./const"
 import * as elements from "./elements"
 import { game } from "./game"
 import {
 	calculateCost,
+	getThreshold,
 	thresholdBarrier,
 	thresholdOpen,
 	thresholdSound,
@@ -19,7 +20,7 @@ function hideInstructionsSubscriber(
 }
 
 function thresholdSubscriber(/** @type {typeof game.state} */ state) {
-	const threshold = isNaN(queryThreshold) ? THRESHOLD : queryThreshold ?? THRESHOLD;
+	const threshold = getThreshold()
 
 	if (state.count > threshold && !state.created) {
 		game.setCreated()
