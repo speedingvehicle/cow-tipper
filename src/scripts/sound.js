@@ -1,9 +1,10 @@
 // @ts-check
 
 import { audioSrc, themedSrc } from "./util"
+import { SOUND_EFFECT_AMMOUNT } from "./const"
 
 const sfx = Array.from(
-	{ length: 6 },
+	{ length: SOUND_EFFECT_AMMOUNT },
 	(_, i) => new Audio(audioSrc(themedSrc(`sfx-${i}`)))
 )
 
