@@ -26,18 +26,32 @@
 	text-size-adjust: 100%;
 	font-synthesis: style weight small-caps;
 	user-select: none;
+	font-size: 16px;
+
+	@media (max-width: 512px) {
+		font-size: 13px;
+	}
 }
 
 :where(html) {
 	font-family: "Bangers", system-ui, -apple-system, BlinkMacSystemFont,
 		"Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
 		sans-serif;
+	overflow-x: hidden;
 }
 
 :where(body) {
 	margin: 0;
+	padding: 1rem;
+	display: flex;
+
+	place-content: center;
+	place-items: center;
+
 	background-color: #a47a5b;
 	min-height: 100vh;
+
+	overflow-x: hidden;
 }
 
 :where(button, input, select, textarea) {
@@ -73,14 +87,19 @@
 	display: flex;
 
 	flex-flow: column nowrap;
+	flex: 1 0 0%;
 	place-content: space-between;
 	place-items: center;
 	gap: 4rem;
 
-	padding: 2rem 0.5rem;
+	background-color: #f2eee370;
+	backdrop-filter: blur(4px);
+
+	overflow-x: hidden;
+
+	padding: 2rem;
 	margin: auto;
 
-	min-height: 100vh;
 	max-width: 1080px;
 }
 
@@ -90,16 +109,28 @@ header {
 	place-content: space-between;
 	place-items: center;
 	position: relative;
-	height: 288px;
-	padding: 1.25rem 0;
+	height: 24rem;
+	
+	@media (max-width: 512px) {
+		height: 16rem;
+	}
 }
 
 .bg {
 	position: absolute;
 	z-index: -1;
-	top: -1rem;
+	inset: 0;
+	margin: auto;
 
-	filter: opacity(0.75);
+	object-fit: cover;
+	height: 100%;
+}
+
+.logo {
+	@media (max-width: 512px) {
+		width: 256px;
+		height: 144px;
+	}
 }
 
 .instructions {
@@ -108,6 +139,7 @@ header {
 	letter-spacing: 0.0375rem;
 	background-color: #cdac8528;
 	padding: 0.25rem 1rem;
+	margin: 0;
 	border-radius: 0.5rem;
 	backdrop-filter: blur(8px);
 
@@ -130,14 +162,26 @@ header {
 
 .count-display {
 	padding: 4rem 0;
+
+	@media (max-width: 512px) {
+		order: 0;
+	}
 }
 
 .game-panel {
 	display: flex;
-	flex: 1 0 0%;
 	width: 100%;
 	place-content: space-between;
 	place-items: center;
+	gap: 0.5rem;
+
+	@media (max-width: 985px) {
+		flex-direction: column;
+	}
+
+	@media (max-width: 512px) {
+		order: 1
+	}
 }
 
 .cow {
@@ -146,6 +190,13 @@ header {
 
 	&:focus-visible {
 		box-shadow: 0 0 0 4px #5e4b34;
+	}
+}
+
+#cow-image {
+	@media (max-width: 512px) {
+		width: 256px;
+		height: 256px;
 	}
 }
 
@@ -205,8 +256,10 @@ header {
 	}
 
 	&-image {
-		width: 64px;
-		height: 64px;
+		width: 4rem;
+		height: 4rem;
+		margin: 0;
+		padding: 0;
 		overflow: hidden;
 		border-radius: 0.25rem;
 		position: relative;
@@ -215,6 +268,8 @@ header {
 		& img {
 			position: relative;
 			z-index: 15;
+			width: 4rem;
+			height: 4rem;
 		}
 	}
 
@@ -243,6 +298,11 @@ header {
 		place-content: center;
 		place-items: flex-start;
 		flex: 1 0 0%;
+
+		@media (max-width: 512px) {
+			place-content: start;
+			text-align: start;
+		}
 	}
 
 	&-title {
