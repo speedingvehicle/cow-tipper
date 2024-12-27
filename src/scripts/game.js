@@ -2,6 +2,7 @@
 
 import { UPGRADES } from "./const"
 import { calculateCost } from "./util"
+import * as elements from "./elements"
 
 /**
  * @typedef {Game["state"]} GameState
@@ -81,6 +82,11 @@ class Game {
 
 	increment(amount = 1) {
 		this.state.count += amount
+
+		if (this.state.count > 0 && this.state.count < 5) {
+			elements.clickMe.style["opacity"] = "0"
+		}
+
 		this.#notifySubscribers()
 	}
 

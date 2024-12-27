@@ -131,6 +131,10 @@ export function imageSrc(/** @type {string} */ file) {
 	return `content/images/${file}.png`
 }
 
+export function gifSrc(/** @type {string} */ file) {
+	return `content/images/${file}.gif`
+}
+
 export function audioSrc(/** @type {string} */ file) {
 	return `content/sound/${file}.mp3`
 }
