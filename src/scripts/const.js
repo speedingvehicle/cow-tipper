@@ -1,13 +1,14 @@
 // @ts-check
 
 /** @typedef {UPGRADES[number]} Upgrade */
-/** @typedef {"xmas" | "nye" | "cny"} Theme */
+/** @typedef {"xmas" | "nye" | "cny" | "evil"} Theme */
 
 /** @type {Theme[]} */
 export const THEMES = [
 	"xmas",
 	"nye",
 	"cny",
+	"evil",
 ]
 
 export const UPGRADES = Object.freeze([
