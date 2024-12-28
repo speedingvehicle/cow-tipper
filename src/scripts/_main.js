@@ -23,7 +23,7 @@ if (theme) {
 			elements.instructions.textContent = "点击奶牛即可挤奶。<br/>使用您累积的牛奶量购买升级。"
 			elements.countUnit.textContent = "加仑"
 			break
-		case "evil":
+		case "halloween":
 			elements.instructions.textContent = "cow hurty"
 			elements.countUnit.textContent = "scary gallons"
 	}
