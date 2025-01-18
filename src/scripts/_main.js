@@ -32,7 +32,7 @@ if (theme) {
 setTimeout(() => {
 	document.body.insertAdjacentElement("afterbegin", elements.loadingScreen)
 
-	elements.loadingScreenButton.addEventListener("pointerdown", () => {
+	elements.loadingScreenButton.addEventListener("click", () => {
 		elements.loadingScreen.remove()
 		music.play()
 		game.init()
@@ -56,3 +56,8 @@ Object.values(subscribers).forEach((subscriber) => {
 })
 
 elements.cow.addEventListener("pointerdown", clickCow)
+window.addEventListener("keydown", (event => {
+	if (event.key === "p") {
+		clickCow()
+	}
+}))
