@@ -106,22 +106,9 @@ export function thresholdSound() {
 }
 
 export function thresholdBarrier(/** @type {KeyboardEvent} */ event) {
-	switch (event.key) {
-		case "Control":
-		case "Alt":
-		case "Delete":
-		case "Shift":
-		case "Tab":
-		case " ":
-		case "w":
-		case "W":
-		case "F4":
-		case "Escape":
-			openCow()
-			alert("MMMmmmmm mmm000000oo oOOOO")
-			break
-	}
-
+	openCow()
+	thresholdSound()
+	setInterval(createCow, 250)
 	alert(
 		"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMoo"
 	)
