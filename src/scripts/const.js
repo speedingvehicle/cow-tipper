@@ -38,7 +38,7 @@ export const UPGRADES = Object.freeze([
 	},
 ])
 
-export const THRESHOLD = 17500
+export const THRESHOLD = 1
 export const SPECIAL_TITLE = "MOOooOOOoO00oOO0ooo00oOOO0Oooo0OO0OO"
 export const SOUND_EFFECT_AMMOUNT = 6
 
